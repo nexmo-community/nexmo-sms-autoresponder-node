@@ -1,0 +1,16 @@
+{
+  "name": "nexmo-sms-autoresponder-node",
+  "version": "1.0.0",
+  "description": "SMS Autoresponder with Nexmo",
+  "main": "autoresponder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "nexmo": "^2.5.1-beta-1"
+  }
+}
