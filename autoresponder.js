@@ -23,7 +23,10 @@ var text = "👋Hello from Nexmo";
 
 app.post('/webhooks/inbound', (req, res) => {
   console.log(req.body)
-  request(`http://numbersapi.com/${req.body.text}`, (error, response, body) => {
+
+  var number = parseInt(req.body.text) || 42;
+
+  request(`http://numbersapi.com/${number}`, (error, response, body) => {
     if (error) {
       text = "The Numbers API has thrown an error."
     } else {
@@ -31,8 +34,8 @@ app.post('/webhooks/inbound', (req, res) => {
     }
 
     nexmo.channel.send(
-      { "type": "sms", "number": process.env.TO_NUMBER },
       { "type": "sms", "number": req.body.msisdn },
+      { "type": "sms", "number": req.body.to },
       {
         "content": {
           "type": "text",
