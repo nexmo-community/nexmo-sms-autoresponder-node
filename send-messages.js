@@ -1,19 +1,19 @@
 require('dotenv').config({path:__dirname + '/.env'});
 
-const Nexmo = require('nexmo');
+const Vonage = require("@vonage/server-sdk");
 
-const nexmo = new Nexmo({
-  apiKey: process.env.NEXMO_API_KEY,
-  apiSecret: process.env.NEXMO_API_SECRET,
-  applicationId: process.env.NEXMO_APPLICATION_ID,
-  privateKey: process.env.NEXMO_APPLICATION_PRIVATE_KEY_PATH
+const vonage = new Vonage({
+  apiKey: process.env.VONAGE_API_KEY,
+  apiSecret: process.env.VONAGE_API_SECRET,
+  applicationId: process.env.VONAGE_APPLICATION_ID,
+  privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
 });
 
-var text = "👋Hello from Nexmo";
+var text = "👋Hello from Vonage";
 
-nexmo.channel.send(
+vonage.channel.send(
   { "type": "sms", "number": process.env.TO_NUMBER },
-  { "type": "sms", "number": "Nexmo" },
+  { "type": "sms", "number": "Vonage" },
   {
     "content": {
       "type": "text",

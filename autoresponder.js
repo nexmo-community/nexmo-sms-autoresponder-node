@@ -1,25 +1,21 @@
-const Nexmo = require('nexmo')
-
+const Vonage = require("@vonage/server-sdk");
+const express = require("express");
 const app = require('express')()
-const bodyParser = require('body-parser')
-
 const request = require('request')
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(3000)
 
-const nexmo = new Nexmo({
-  apiKey: process.env.NEXMO_API_KEY,
-  apiSecret: process.env.NEXMO_API_SECRET,
-  applicationId: process.env.NEXMO_APPLICATION_ID,
-  privateKey: process.env.NEXMO_APPLICATION_PRIVATE_KEY_PATH
+const vonage = new Vonage({
+  apiKey: process.env.VONAGE_API_KEY,
+  apiSecret: process.env.VONAGE_API_SECRET,
+  applicationId: process.env.VONAGE_APPLICATION_ID,
+  privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
 });
 
-var text = "👋Hello from Nexmo";
+var text = "👋Hello from Vonage";
 
 app.post('/webhooks/inbound', (req, res) => {
   console.log(req.body)
@@ -33,7 +29,7 @@ app.post('/webhooks/inbound', (req, res) => {
       text = body
     }
 
-    nexmo.channel.send(
+    vonage.channel.send(
       { "type": "sms", "number": req.body.msisdn },
       { "type": "sms", "number": req.body.to },
       {

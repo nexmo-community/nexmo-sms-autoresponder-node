@@ -1,10 +1,8 @@
-const app = require('express')()
-const bodyParser = require('body-parser')
+const express = require("express");
+const app = require('express')();
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(3000)
 
