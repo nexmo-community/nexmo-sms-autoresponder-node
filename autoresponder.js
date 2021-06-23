@@ -15,11 +15,9 @@ const vonage = new Vonage({
   privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
 });
 
-const text = "👋Hello from Vonage";
-
 app.post('/webhooks/inbound', (req, res) => {
   console.log(req.body)
-
+  const text = "👋Hello from Vonage";
   const number = parseInt(req.body.text) || 42;
 
   request(`http://numbersapi.com/${number}`, (error, response, body) => {
