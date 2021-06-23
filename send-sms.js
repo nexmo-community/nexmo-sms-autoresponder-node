@@ -21,4 +21,4 @@ vonage.message.sendSms("Vonage", process.env.TO_NUMBER, text, {
       console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
     }
   }
-})
+});

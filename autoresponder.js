@@ -1,12 +1,12 @@
 const Vonage = require("@vonage/server-sdk");
 const express = require("express");
 const app = express();
-const request = require('request')
+const request = require('request');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(3000)
+app.listen(3000);
 
 const vonage = new Vonage({
   apiKey: process.env.VONAGE_API_KEY,
@@ -22,9 +22,9 @@ app.post('/webhooks/inbound', (req, res) => {
 
   request(`http://numbersapi.com/${number}`, (error, response, body) => {
     if (error) {
-      text = "The Numbers API has thrown an error."
+      text = "The Numbers API has thrown an error.";
     } else {
-      text = body
+      text = body;
     }
 
     vonage.channel.send(

@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(3000)
+app.listen(3000);
 
 app.post('/webhooks/inbound', (req, res) => {
   console.log(req.body);
