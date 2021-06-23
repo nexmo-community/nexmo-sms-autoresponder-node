@@ -1,6 +1,6 @@
 const Vonage = require("@vonage/server-sdk");
 const express = require("express");
-const app = require('express')()
+const app = express();
 const request = require('request')
 
 app.use(express.json());
@@ -15,12 +15,12 @@ const vonage = new Vonage({
   privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
 });
 
-var text = "👋Hello from Vonage";
+const text = "👋Hello from Vonage";
 
 app.post('/webhooks/inbound', (req, res) => {
   console.log(req.body)
 
-  var number = parseInt(req.body.text) || 42;
+  const number = parseInt(req.body.text) || 42;
 
   request(`http://numbersapi.com/${number}`, (error, response, body) => {
     if (error) {

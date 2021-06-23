@@ -9,7 +9,7 @@ const vonage = new Vonage({
   privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
 });
 
-var text = "👋Hello from Vonage";
+const text = "👋Hello from Vonage";
 
 vonage.channel.send(
   { "type": "sms", "number": process.env.TO_NUMBER },

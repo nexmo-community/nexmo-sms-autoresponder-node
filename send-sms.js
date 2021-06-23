@@ -7,7 +7,7 @@ const vonage = new Vonage({
   apiSecret: process.env.VONAGE_API_SECRET
 });
 
-var text = "👋Hello from Vonage";
+const text = "👋Hello from Vonage";
 
 vonage.message.sendSms("Vonage", process.env.TO_NUMBER, text, {
   type: "unicode"

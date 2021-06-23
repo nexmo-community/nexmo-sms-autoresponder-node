@@ -17,4 +17,4 @@ We love to hear from you so if you have questions, comments or find a bug in the
 ## Further Reading
 
 * Check out the Developer Documentation at <https://developer.vonage.com>
-* Details about Vonage SMS Functionality https://developer.vonage.com/messaging/sms/overview
+* Details about Vonage SMS Functionality <https://developer.vonage.com/messaging/sms/overview>
