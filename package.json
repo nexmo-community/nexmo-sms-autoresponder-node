@@ -2,7 +2,6 @@
   "name": "vonage-sms-autoresponder-node",
   "version": "1.0.0",
   "description": "SMS Autoresponder with Vonage",
-  "contributor": "Amanda Cavallaro (amanda.cavallaro@vonage.com)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node autoresponder.js"
