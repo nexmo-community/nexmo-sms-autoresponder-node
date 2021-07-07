@@ -1,19 +1,18 @@
 {
-  "name": "nexmo-sms-autoresponder-node",
+  "name": "vonage-sms-autoresponder-node",
   "version": "1.0.0",
-  "description": "SMS Autoresponder with Nexmo",
-  "main": "autoresponder.js",
+  "description": "SMS Autoresponder with Vonage",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node autoresponder.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.1.0",
+    "@vonage/server-sdk": "^2.10.7-beta-2",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "nexmo": "^2.5.1-beta-1",
     "request": "^2.88.0"
-  }
+  },
+  "type": "module"
 }
