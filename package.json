@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vonage/server-sdk": "^2.10.7-beta-2",
+    "@vonage/server-sdk": "2.10.7-beta-2",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "request": "^2.88.0"
