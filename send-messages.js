@@ -1,10 +1,9 @@
-require('dotenv').config({path:__dirname + '/.env'});
+import dotenv from 'dotenv'
+import Vonage from '@vonage/server-sdk'
 
-const Vonage = require("@vonage/server-sdk");
+dotenv.config()
 
 const vonage = new Vonage({
-  apiKey: process.env.VONAGE_API_KEY,
-  apiSecret: process.env.VONAGE_API_SECRET,
   applicationId: process.env.VONAGE_APPLICATION_ID,
   privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
 });

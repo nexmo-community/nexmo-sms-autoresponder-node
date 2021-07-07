@@ -1,36 +1,49 @@
-const Vonage = require("@vonage/server-sdk");
-const express = require("express");
-const app = express();
-const request = require('request');
+import dotenv from 'dotenv'
+import express from 'express'
+import request from 'request'
+import Vonage from '@vonage/server-sdk'
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+dotenv.config()
 
-app.listen(3000);
+const {
+  json,
+  urlencoded
+} = express
+
+const app = express()
 
 const vonage = new Vonage({
-  apiKey: process.env.VONAGE_API_KEY,
-  apiSecret: process.env.VONAGE_API_SECRET,
   applicationId: process.env.VONAGE_APPLICATION_ID,
   privateKey: process.env.VONAGE_APPLICATION_PRIVATE_KEY_PATH
-});
+})
+
+app.use(json())
+app.use(urlencoded({
+  extended: true
+}))
+
+app.listen(3000, () => {
+  console.log('Server listening at http://localhost:3000')
+})
 
 app.post('/webhooks/inbound', (req, res) => {
   console.log(req.body)
-  const text = "👋Hello from Vonage";
-  const number = parseInt(req.body.text) || 42;
+
+  let text = "The Numbers API has thrown an error."
+  const number = parseInt(req.body.message.content.text) || 42
 
   request(`http://numbersapi.com/${number}`, (error, response, body) => {
-    if (error) {
-      text = "The Numbers API has thrown an error.";
-    } else {
-      text = body;
+    if (!error) {
+      text = body
     }
 
-    vonage.channel.send(
-      { "type": "sms", "number": req.body.msisdn },
-      { "type": "sms", "number": req.body.to },
-      {
+    vonage.channel.send({
+        "type": "sms",
+        "number": req.body.from.number
+      }, {
+        "type": "sms",
+        "number": req.body.to.number
+      }, {
         "content": {
           "type": "text",
           "text": text
@@ -38,13 +51,18 @@ app.post('/webhooks/inbound', (req, res) => {
       },
       (err, responseData) => {
         if (err) {
-          console.log("Message failed with error:", err);
+          console.log("Message failed with error:", err)
         } else {
-          console.log(`Message ${responseData.message_uuid} sent successfully.`);
+          console.log(`Message ${responseData.message_uuid} sent successfully.`)
         }
       }
-    );
+    )
 
-    res.status(200).end();
+    res.status(200).end()
   })
-});
+
+  app.post('/webhooks/status', (req, res) => {
+    console.log(req.body)
+    res.status(200).end()
+  })
+})

@@ -2,17 +2,17 @@
   "name": "vonage-sms-autoresponder-node",
   "version": "1.0.0",
   "description": "SMS Autoresponder with Vonage",
-  "contributor": "Amanda Cavallaro (amanda.cavallaro@vonage.com)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node autoresponder.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vonage/server-sdk": "^2.10.7-beta-2",
+    "@vonage/server-sdk": "2.10.7-beta-2",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "request": "^2.88.0"
-  }
+  },
+  "type": "module"
 }
